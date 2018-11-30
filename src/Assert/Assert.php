@@ -10,5 +10,16 @@ use Webmozart\Assert\Assert as BaseAssert;
  */
 final class Assert extends BaseAssert
 {
-    /*_*/
+    /**
+     * {@inheritdoc}
+     */
+    public static function isIterable($value, $message = ''): void
+    {
+        if (!is_iterable($value)) {
+            static::reportInvalidArgument(sprintf(
+                $message ?: 'Expected an iterable. Got: %s',
+                static::typeToString($value)
+            ));
+        }
+    }
 }
