@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace c3037\Basis\Utils\Date\Interval;
 
 use DateInterval;
+use DateTime;
 use DateTimeImmutable;
 
 final class DateIntervalTransformer
@@ -12,7 +13,7 @@ final class DateIntervalTransformer
 
     public static function toSeconds(DateInterval $interval): int
     {
-        $reference = DateTimeImmutable::createFromFormat(DateTimeImmutable::ATOM, self::TIME_POINT);
+        $reference = DateTimeImmutable::createFromFormat(DateTime::ATOM, self::TIME_POINT);
         $endTime = $reference->add($interval);
 
         return $endTime->getTimestamp() - $reference->getTimestamp();

@@ -4,13 +4,14 @@ declare(strict_types=1);
 namespace c3037\Basis\Utils\Date\DateTime\Factory;
 
 use c3037\Basis\Utils\Date\DateTime\Factory\Exception\UnableToCreateDateTimeException;
+use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;
 use DateTimeZone;
 
 final class DateTimeFactory
 {
-    public const FORMAT_ATOM = DateTimeImmutable::ATOM;
+    public const FORMAT_ATOM = DateTime::ATOM;
 
     /**
      * @throws UnableToCreateDateTimeException

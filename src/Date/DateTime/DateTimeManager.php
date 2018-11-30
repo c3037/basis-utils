@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace c3037\Basis\Utils\Date\DateTime;
 
 use DateInterval;
+use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;
 use DateTimeZone;
@@ -28,7 +29,7 @@ final class DateTimeManager
     private static function convertToDateTimeImmutable(DateTimeInterface $time): DateTimeImmutable
     {
         /** @noinspection PhpUnhandledExceptionInspection */
-        return new DateTimeImmutable($time->format(DateTimeImmutable::ATOM));
+        return new DateTimeImmutable($time->format(DateTime::ATOM));
     }
 
     private function __construct()

@@ -6,7 +6,7 @@ namespace c3037\Basis\Utils\Date\DateTime\Mocker;
 use c3037\Basis\Utils\Date\DateTime\DateTimeProvider;
 use c3037\Basis\Utils\Date\DateTime\Mocker\Exception\UnableToFixCurrentTimeException;
 use c3037\Basis\Utils\Reflection\ReflectionHelper;
-use DateTimeImmutable;
+use DateTime;
 use DateTimeInterface;
 use ReflectionException;
 
@@ -22,7 +22,7 @@ final class DateTimeMocker
         } catch (ReflectionException $e) {
             $errorMessage = sprintf(
                 "Cannot fix Date '%s'",
-                $dateTime !== null ? $dateTime->format(DateTimeImmutable::ATOM) : 'null'
+                $dateTime !== null ? $dateTime->format(DateTime::ATOM) : 'null'
             );
 
             throw new UnableToFixCurrentTimeException($errorMessage, 0, $e);
