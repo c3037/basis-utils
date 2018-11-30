@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace c3037\Basis\Utils\DateTime\DateTimeFactory;
+namespace c3037\Basis\Utils\Date\DateTime\Factory;
 
-use c3037\Basis\Utils\DateTime\DateTimeFactory\Exception\UnableToCreateDateTimeException;
+use c3037\Basis\Utils\Date\DateTime\Factory\Exception\UnableToCreateDateTimeException;
 use DateTimeImmutable;
 use DateTimeInterface;
 use DateTimeZone;

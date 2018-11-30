@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace c3037\Basis\Utils\DateTimeRange;
+namespace c3037\Basis\Utils\Date\Range;
 
 use c3037\Basis\Utils\Assert\Assert;
-use c3037\Basis\Utils\DateTime\DateTimeTransformer;
+use c3037\Basis\Utils\Date\DateTime\DateTimeTransformer;
 use DateTimeInterface;
 
 final class Range
@@ -35,8 +35,8 @@ final class Range
         bool $includingFrom = true,
         bool $includingTo = true
     ) {
-        $realRangeFrom = DateTimeTransformer::toMicrosecondsFromUnixEpoch($from) + !$includingFrom;
-        $realRangeTo = DateTimeTransformer::toMicrosecondsFromUnixEpoch($to) - !$includingTo;
+        $realRangeFrom = DateTimeTransformer::toSmallestTimeUnitsFromUnixEpoch($from) + !$includingFrom;
+        $realRangeTo = DateTimeTransformer::toSmallestTimeUnitsFromUnixEpoch($to) - !$includingTo;
         Assert::greaterThanEq($realRangeTo, $realRangeFrom);
 
         $this->from = clone $from;

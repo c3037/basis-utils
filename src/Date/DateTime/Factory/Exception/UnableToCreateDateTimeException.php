@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace c3037\Basis\Utils\DateTime\DateTimeFactory\Exception;
+namespace c3037\Basis\Utils\Date\DateTime\Factory\Exception;
 
 use Exception;
 

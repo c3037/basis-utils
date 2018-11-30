@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace c3037\Basis\Utils\DateTime\TimeZoneFactory;
+namespace c3037\Basis\Utils\Date\TimeZone\Factory;
 
-use c3037\Basis\Utils\DateTime\TimeZoneFactory\Exception\UnableToCreateTimeZoneException;
+use c3037\Basis\Utils\Date\TimeZone\Factory\Exception\UnableToCreateTimeZoneException;
 use DateTimeZone;
 use Exception;
 
