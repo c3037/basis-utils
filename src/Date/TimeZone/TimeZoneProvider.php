@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace c3037\Basis\Utils\Date\TimeZone;
 
+use c3037\Basis\Utils\Date\TimeZone\Factory\TimeZoneFactory;
 use DateTimeZone;
 
 final class TimeZoneProvider
@@ -18,7 +19,8 @@ final class TimeZoneProvider
             return clone self::$currentZoneForTests;
         }
 
-        return new DateTimeZone(date_default_timezone_get());
+        /** @noinspection PhpUnhandledExceptionInspection */
+        return TimeZoneFactory::createFromString(date_default_timezone_get());
     }
 
     private function __construct()
