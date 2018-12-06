@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace c3037\Basis\Utils\Date\Interval;
 
+use c3037\Basis\Utils\Date\DateTime\DateTimeManager;
+use c3037\Basis\Utils\Date\DateTime\Factory\DateTimeFactory;
+use c3037\Basis\Utils\Date\TimeZone\TimeZoneProvider;
 use DateInterval;
 use DateTime;
-use DateTimeImmutable;
 
 final class DateIntervalTransformer
 {
@@ -13,8 +15,13 @@ final class DateIntervalTransformer
 
     public static function toSeconds(DateInterval $interval): int
     {
-        $originalTime = DateTimeImmutable::createFromFormat(DateTime::ATOM, self::UNIX_EPOCH_STARTED_AT);
-        $timeWithInterval = $originalTime->add($interval);
+        /** @noinspection PhpUnhandledExceptionInspection */
+        $originalTime = DateTimeFactory::createFromFormat(
+            DateTime::ATOM,
+            self::UNIX_EPOCH_STARTED_AT,
+            TimeZoneProvider::getApplicationTimeZone()
+        );
+        $timeWithInterval = DateTimeManager::addInterval($originalTime, $interval);
 
         return $timeWithInterval->getTimestamp() - $originalTime->getTimestamp();
     }
