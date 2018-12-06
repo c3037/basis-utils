@@ -4,45 +4,34 @@ declare(strict_types=1);
 namespace c3037\Basis\Utils\Date\Range;
 
 use c3037\Basis\Utils\Assert\Assert;
-use c3037\Basis\Utils\Date\DateTime\DateTimeTransformer;
 use DateTimeInterface;
+use InvalidArgumentException;
 
 final class Range
 {
     /**
+     * (including)
+     *
      * @var DateTimeInterface
      */
     private $from;
 
     /**
+     * (including)
+     *
      * @var DateTimeInterface
      */
     private $to;
 
     /**
-     * @var bool
+     * @throws InvalidArgumentException
      */
-    private $includingFrom;
-
-    /**
-     * @var bool
-     */
-    private $includingTo;
-
-    public function __construct(
-        DateTimeInterface $from,
-        DateTimeInterface $to,
-        bool $includingFrom = true,
-        bool $includingTo = true
-    ) {
-        $realRangeFrom = DateTimeTransformer::toSmallestTimeUnitsFromUnixEpoch($from) + !$includingFrom;
-        $realRangeTo = DateTimeTransformer::toSmallestTimeUnitsFromUnixEpoch($to) - !$includingTo;
-        Assert::greaterThanEq($realRangeTo, $realRangeFrom);
+    public function __construct(DateTimeInterface $from, DateTimeInterface $to)
+    {
+        Assert::true($from <= $to);
 
         $this->from = clone $from;
         $this->to = clone $to;
-        $this->includingFrom = $includingFrom;
-        $this->includingTo = $includingTo;
     }
 
     public function getFrom(): DateTimeInterface
@@ -53,16 +42,6 @@ final class Range
     public function getTo(): DateTimeInterface
     {
         return clone $this->to;
-    }
-
-    public function isIncludingFrom(): bool
-    {
-        return $this->includingFrom;
-    }
-
-    public function isIncludingTo(): bool
-    {
-        return $this->includingTo;
     }
 
     public function __clone()
